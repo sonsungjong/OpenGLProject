@@ -23,6 +23,7 @@
     <ClCompile Include="_00_install.cpp" />
     <ClCompile Include="_01_Window.cpp" />
     <ClCompile Include="_02_Triangle.cpp" />
+    <ClCompile Include="_03_TripleTriangle.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
