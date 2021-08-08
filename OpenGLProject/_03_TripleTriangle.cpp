@@ -50,7 +50,7 @@ int main() {
 		0.0f, -0.5f, 0.0f,				// 내부 하단
 	};
 
-	// vertices를 가져다 쓸 좌표
+	// vertices 점을 가져다 쓸 매트릭스
 	GLuint indices[] =
 	{
 		0, 3, 5,			// 하단 좌측 삼각형 좌표 (vertices의 0행, 3,행 5행)
