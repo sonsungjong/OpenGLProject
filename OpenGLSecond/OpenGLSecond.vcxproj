@@ -21,8 +21,8 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{e447f340-2582-4aa2-a6a6-938a2f889a0a}</ProjectGuid>
-    <RootNamespace>OpenGLThird</RootNamespace>
+    <ProjectGuid>{dd72ed89-7960-4a28-bc70-99d82e780518}</ProjectGuid>
+    <RootNamespace>OpenGLSecond</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -145,18 +145,17 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="glad.c" />
-    <ClCompile Include="_02_Hello.cpp" />
-    <ClCompile Include="_06_stb_image.cpp" />
-    <ClCompile Include="_07_DisplayShapes.cpp" />
-    <ClCompile Include="_08_ShaderTransformations.cpp" />
+    <ClCompile Include="..\OpenGLThird\glad.c" />
+    <ClCompile Include="Shader.cpp" />
+    <ClCompile Include="_05_ShaderTransform.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="fragment_core.glsl" />
-    <None Include="vertex_core.glsl" />
-    <None Include="_08_fragment.glsl" />
-    <None Include="fragment_core2.glsl" />
-    <None Include="_08_vertex.glsl" />
+    <None Include="frag.glsl" />
+    <None Include="frag2.glsl" />
+    <None Include="vertex.glsl" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Shader.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
