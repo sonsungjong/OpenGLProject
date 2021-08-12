@@ -147,6 +147,17 @@
   <ItemGroup>
     <ClCompile Include="glad.c" />
     <ClCompile Include="_02_Hello.cpp" />
+    <ClCompile Include="_06_stb_image.cpp" />
+    <ClCompile Include="_07_DisplayShapes.cpp" />
+    <ClCompile Include="_08_ShaderTransformations.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="fragment_core.glsl" />
+    <None Include="fragment_core2.glsl" />
+    <None Include="vertex_core.glsl" />
+    <None Include="_08_fragment.glsl" />
+    <None Include="_08_fragment2.glsl" />
+    <None Include="_08_vertex.glsl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

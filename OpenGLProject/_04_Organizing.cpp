@@ -8,7 +8,7 @@
 
 using namespace std;
 
-int main04() {
+int main() {
 	// √ ±‚»≠
 	glfwInit();
 

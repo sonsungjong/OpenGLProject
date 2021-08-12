@@ -20,7 +20,7 @@ const char* fragmentShaderSource = "#version 330 core\n"
 "		FragColor = vec4(0.8f, 0.3f, 0.02f, 1.0f);\n"
 "}\n\0";
 
-int main() {
+int main03() {
 	// 초기화
 	glfwInit();
 
@@ -42,12 +42,12 @@ int main() {
 
 	GLfloat vertices[] =
 	{
-		-0.5f, -0.5f, 0.0f,			// 하단 좌측
-		0.5f, -0.5f, 0.0f,				// 하단 우측
-		0.0f, 0.5f, 0.0f,			// 상단
-		-0.25f, 0.0f, 0.0f,			// 내부 좌측
-		0.25f, 0.0f, 0.0f,			// 내부 우측
-		0.0f, -0.5f, 0.0f,				// 내부 하단
+		-0.5f, -0.5f, 0.0f,			// 하단 좌측0
+		0.5f, -0.5f, 0.0f,				// 하단 우측1
+		0.0f, 0.5f, 0.0f,			// 상단2
+		-0.25f, 0.0f, 0.0f,			// 내부 좌측3
+		0.25f, 0.0f, 0.0f,			// 내부 우측4
+		0.0f, -0.5f, 0.0f,				// 내부 하단5
 	};
 
 	// vertices 점을 가져다 쓸 매트릭스
@@ -55,7 +55,7 @@ int main() {
 	{
 		0, 3, 5,			// 하단 좌측 삼각형 좌표 (vertices의 0행, 3,행 5행)
 		3, 2, 4,			// 상단 삼각형 (vertices의 3행, 2행, 4행)
-		5, 4, 1,			// 하단 우측 삼각형 (vertices의 5행, 4행, 1행)
+		5, 4, 1			// 하단 우측 삼각형 (vertices의 5행, 4행, 1행)
 	};
 
 	// GLFWwindow 생성
@@ -110,9 +110,9 @@ int main() {
 	glGenBuffers(1, &EBO);
 
 	// 현재 Vertex Array Object를 변수 VAO로 만든다.
+	// Buffer 바인딩 후 vertices 데이터를 도입
 	glBindVertexArray(VAO);
 
-	// Buffer 바인딩 후 vertices 데이터를 도입
 	glBindBuffer(GL_ARRAY_BUFFER, VBO);
 	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 
