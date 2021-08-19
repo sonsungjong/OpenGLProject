@@ -147,15 +147,24 @@
   <ItemGroup>
     <ClCompile Include="..\OpenGLThird\glad.c" />
     <ClCompile Include="Shader.cpp" />
+    <ClCompile Include="_04_Shapes.cpp" />
     <ClCompile Include="_05_ShaderTransform.cpp" />
+    <ClCompile Include="_06_Texture.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="frag.glsl" />
-    <None Include="frag2.glsl" />
     <None Include="vertex.glsl" />
+    <None Include="_04_frag.glsl" />
+    <None Include="_04_vertex.glsl" />
+    <None Include="_06_Texture.frag" />
+    <None Include="_06_Texture.vert" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Shader.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\Resources\kflag.png" />
+    <Image Include="..\Resources\pop_cat.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

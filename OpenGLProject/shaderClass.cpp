@@ -65,3 +65,8 @@ void shaderClass::Delete()
 {
 	glDeleteProgram(ID);
 }
+
+GLuint shaderClass::GetID()
+{
+	return ID;
+}

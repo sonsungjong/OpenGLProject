@@ -17,7 +17,7 @@ void framebuffer_size_callback08(GLFWwindow* window, int width, int height);
 void processInput08(GLFWwindow* window);
 string loadShaderSrc08(const char* filename);
 
-int main() {
+int main08() {
 	int success;
 	char infoLog[512];
 

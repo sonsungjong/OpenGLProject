@@ -150,6 +150,7 @@
     <ClCompile Include="_06_stb_image.cpp" />
     <ClCompile Include="_07_DisplayShapes.cpp" />
     <ClCompile Include="_08_ShaderTransformations.cpp" />
+    <ClCompile Include="_09_Textures.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="fragment_core.glsl" />
@@ -157,6 +158,12 @@
     <None Include="_08_fragment.glsl" />
     <None Include="fragment_core2.glsl" />
     <None Include="_08_vertex.glsl" />
+    <None Include="_09_fragment.glsl" />
+    <None Include="_09_vertex.glsl" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\Resources\kflag.png" />
+    <Image Include="..\Resources\pop_cat.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

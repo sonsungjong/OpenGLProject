@@ -22,6 +22,7 @@
     <ClCompile Include="EBO.cpp" />
     <ClCompile Include="glad.c" />
     <ClCompile Include="shaderClass.cpp" />
+    <ClCompile Include="stb_test.cpp" />
     <ClCompile Include="VAO.cpp" />
     <ClCompile Include="VBO.cpp" />
     <ClCompile Include="_00_install.cpp" />
@@ -30,6 +31,7 @@
     <ClCompile Include="_03_TripleTriangle.cpp" />
     <ClCompile Include="_04_Organizing.cpp" />
     <ClCompile Include="_05_ShaderTriangle.cpp" />
+    <ClCompile Include="_06_Texture.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="default.frag" />
@@ -42,6 +44,9 @@
     <ClInclude Include="shaderClass.h" />
     <ClInclude Include="VAO.h" />
     <ClInclude Include="VBO.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\Resources\pop_cat.png" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

@@ -16,6 +16,9 @@
     <Filter Include="리소스 파일\Shaders">
       <UniqueIdentifier>{b1af7f58-6fcf-4437-ae75-dfeca607fb8a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="리소스 파일\Textures">
+      <UniqueIdentifier>{ba2dbd06-7be6-49bb-bc22-c586e1806113}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="_00_install.cpp">
@@ -51,6 +54,12 @@
     <ClCompile Include="_05_ShaderTriangle.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="stb_test.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="_06_Texture.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="default.vert">
@@ -79,5 +88,10 @@
     <ClInclude Include="VAO.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\Resources\pop_cat.png">
+      <Filter>리소스 파일\Textures</Filter>
+    </Image>
   </ItemGroup>
 </Project>

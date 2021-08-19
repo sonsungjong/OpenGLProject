@@ -1,7 +1,7 @@
 #include "Shader.h"
 using namespace std;
 
-int main() {
+int main05() {
 	cout << "Hello OpenGL" << endl;
 	// 1. ÃÊ±âÈ­
 	glfwInit();

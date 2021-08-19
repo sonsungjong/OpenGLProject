@@ -22,6 +22,8 @@ public:
 	void Activate();
 	// 해제
 	void Delete();
+	// ID 사용
+	GLuint GetID();
 };
 
 #endif
