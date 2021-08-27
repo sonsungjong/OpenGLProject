@@ -2,7 +2,7 @@
 
 using namespace std;
 
-int main() {
+int main04() {
 	cout << "OpenGL ½ÇÇà" << endl;
 	// Á¡ÁÂÇ¥
 	GLfloat vertices[] = {

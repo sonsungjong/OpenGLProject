@@ -14,6 +14,8 @@
 #include <glm/gtc/type_ptr.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 
+#include <stb/stb_image.h>
+
 std::string get_file_contents(const char* filename);
 
 class Shader
@@ -31,6 +33,7 @@ public:
 	void Delete();
 	void Rotation();
 	void RotationRepeat();
+	GLuint GetID();
 };
 
 #endif

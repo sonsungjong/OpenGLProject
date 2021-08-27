@@ -147,9 +147,11 @@
   <ItemGroup>
     <ClCompile Include="..\OpenGLThird\glad.c" />
     <ClCompile Include="Shader.cpp" />
+    <ClCompile Include="stb.cpp" />
     <ClCompile Include="_04_Shapes.cpp" />
     <ClCompile Include="_05_ShaderTransform.cpp" />
     <ClCompile Include="_06_Texture.cpp" />
+    <ClCompile Include="_06_TextureSecond.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="frag.glsl" />
@@ -158,6 +160,8 @@
     <None Include="_04_vertex.glsl" />
     <None Include="_06_Texture.frag" />
     <None Include="_06_Texture.vert" />
+    <None Include="_06_TextureSecond.frag" />
+    <None Include="_06_TextureSecond.vert" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Shader.h" />

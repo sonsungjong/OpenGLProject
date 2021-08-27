@@ -79,3 +79,8 @@ void Shader::RotationRepeat() {
 	trans = glm::rotate(trans, glm::radians((float)glfwGetTime() / 100.0f), glm::vec3(0.0f, 0.0f, 1.0f));
 	glUniformMatrix4fv(glGetUniformLocation(ID, "transform"), 1, GL_FALSE, glm::value_ptr(trans));
 }
+
+GLuint Shader::GetID()
+{
+	return ID;
+}

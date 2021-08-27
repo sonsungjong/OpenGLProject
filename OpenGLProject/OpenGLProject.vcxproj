@@ -22,7 +22,8 @@
     <ClCompile Include="EBO.cpp" />
     <ClCompile Include="glad.c" />
     <ClCompile Include="shaderClass.cpp" />
-    <ClCompile Include="stb_test.cpp" />
+    <ClCompile Include="stb.cpp" />
+    <ClCompile Include="textureTest.cpp" />
     <ClCompile Include="VAO.cpp" />
     <ClCompile Include="VBO.cpp" />
     <ClCompile Include="_00_install.cpp" />
@@ -38,6 +39,8 @@
     <None Include="default.vert" />
     <None Include="default2.frag" />
     <None Include="default2.vert" />
+    <None Include="default3.frag" />
+    <None Include="default3.vert" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="EBO.h" />

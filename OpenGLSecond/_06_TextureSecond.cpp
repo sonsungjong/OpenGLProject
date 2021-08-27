@@ -1,16 +1,9 @@
-#include <iostream>
-#include <glad/glad.h>
-#include <GLFW/glfw3.h>
+#include "Shader.h"
 #include <stb/stb_image.h>
-
-#include "shaderClass.h"
-#include "VAO.h"
-#include "VBO.h"
-#include "EBO.h"
 
 using namespace std;
 
-int main() {
+int main222() {
 
 	GLfloat vertices[] = {
 		-0.5f, -0.5f, 0.0f,		1.0f, 0.0f, 0.0f,		0.0f, 0.0f,
@@ -43,23 +36,39 @@ int main() {
 	glViewport(0, 0, 800, 800);
 
 	// Shader 객체를 생성
-	shaderClass shaderProgram("default2.vert", "default2.frag");
+	Shader shaderProgram("_06_TextureSecond.vert", "_06_TextureSecond.frag");
 
-	VAO VAO1;
-	VAO1.Bind();
+	GLuint VAO, VBO, EBO;
+	glGenVertexArrays(1, &VAO);
+	glGenBuffers(1, &VBO);
+	glGenBuffers(1, &EBO);
 
-	VBO VBO1(vertices, sizeof(vertices));
-	EBO EBO1(indices, sizeof(indices));
+	glBindVertexArray(VAO);
 
-	VAO1.LinkAttrib(VBO1, 0, 3, GL_FLOAT, 8 * sizeof(float), (void*)0);
-	VAO1.LinkAttrib(VBO1, 1, 3, GL_FLOAT, 8 * sizeof(float), (void*)(3 * sizeof(float)));
-	VAO1.LinkAttrib(VBO1, 2, 2, GL_FLOAT, 8 * sizeof(float), (void*)(6 * sizeof(float)));
+	glBindBuffer(GL_ARRAY_BUFFER, VBO);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 
-	VAO1.UnBind();
-	VBO1.UnBind();
-	EBO1.UnBind();
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
 
-	GLuint uniID = glGetUniformLocation(shaderProgram.GetID() , "scale");
+	// 좌표 적용
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)0);
+	glEnableVertexAttribArray(0);
+
+	// 색상 적용
+	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(3 * sizeof(float)));
+	glEnableVertexAttribArray(1);
+
+	// 텍스쳐 적용
+	glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(6 * sizeof(float)));
+	glEnableVertexAttribArray(2);
+
+	// 잘못 수정하는 것을 방지하기 위해 0으로 묶음
+	glBindBuffer(GL_ARRAY_BUFFER, 0);
+	glBindVertexArray(0);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+
+	GLuint uniID = glGetUniformLocation(shaderProgram.GetID(), "scale");
 
 	// 텍스쳐
 	int widthImg, heightImg, numColCh;
@@ -77,9 +86,6 @@ int main() {
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
 
-	// float flatColor[] = {1.0f, 1.0f, 1.0f, 1.0f};
-	// glTexParameterfv(GL_TEXTURE_2D, GL_TEXTURE_BORDER_COLOR, flatColor);
-
 	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, widthImg, heightImg, 0, GL_RGBA, GL_UNSIGNED_BYTE, bytes);
 	glGenerateMipmap(GL_TEXTURE_2D);
 
@@ -90,7 +96,7 @@ int main() {
 	shaderProgram.Activate();
 	glUniform1i(tex0Uni, 0);
 
-	while(!glfwWindowShouldClose(window))
+	while (!glfwWindowShouldClose(window))
 	{
 		glClearColor(0.07f, 0.13f, 0.17f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT);
@@ -98,19 +104,19 @@ int main() {
 		shaderProgram.Activate();
 		glUniform1f(uniID, 0.5f);
 		glBindTexture(GL_TEXTURE_2D, texture);
-		VAO1.Bind();
+		glBindVertexArray(VAO);
 		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
-		glfwSwapBuffers(window);
 
+		glfwSwapBuffers(window);
 		glfwPollEvents();
 	}
 
-	VAO1.Delete();
-	VBO1.Delete();
-	EBO1.Delete();
+	glDeleteVertexArrays(1, &VAO);
+	glDeleteBuffers(1, &VBO);
+	glDeleteBuffers(1, &EBO);
 	glDeleteTextures(1, &texture);
 	shaderProgram.Delete();
-	
+
 	// 프로그램 종료 전 window와 GLFW 해제
 	glfwDestroyWindow(window);
 	glfwTerminate();

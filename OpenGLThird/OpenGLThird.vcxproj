@@ -146,8 +146,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="glad.c" />
+    <ClCompile Include="stb.cpp" />
     <ClCompile Include="_02_Hello.cpp" />
-    <ClCompile Include="_06_stb_image.cpp" />
     <ClCompile Include="_07_DisplayShapes.cpp" />
     <ClCompile Include="_08_ShaderTransformations.cpp" />
     <ClCompile Include="_09_Textures.cpp" />

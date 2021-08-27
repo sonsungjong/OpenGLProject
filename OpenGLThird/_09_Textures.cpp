@@ -1,7 +1,6 @@
 #include <iostream>
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
-#include <stb/stb_image.h>
 
 #include <fstream>
 #include <sstream>
@@ -11,6 +10,7 @@
 #include <glm/glm.hpp>
 #include <glm/gtc/type_ptr.hpp>
 #include <glm/gtc/matrix_transform.hpp>
+#include <stb/stb_image.h>
 
 using namespace std;
 
@@ -122,11 +122,11 @@ int main() {
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
 
 	// 좌표 적용
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)0);
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)0);
 	glEnableVertexAttribArray(0);
 
 	// 색상 적용
-	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)(3 * sizeof(float)));
+	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(3 * sizeof(float)));
 	glEnableVertexAttribArray(1);
 
 	// 텍스쳐 적용
@@ -134,11 +134,16 @@ int main() {
 	glEnableVertexAttribArray(2);
 
 	// 텍스쳐
-	unsigned int texture1;
+	unsigned int texture1, texture2;
 	glGenTextures(1, &texture1);
 	glBindTexture(GL_TEXTURE_2D, texture1);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+	
+	float borderColor[] = { 1.0f, 1.0f, 1.0f, 1.0f };
+	glTexParameterfv(GL_TEXTURE_2D, GL_TEXTURE_BORDER_COLOR, borderColor);
+
+	// 이미지 필터링
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
 
@@ -146,7 +151,6 @@ int main() {
 	int width, height, nChannels;
 	stbi_set_flip_vertically_on_load(true);
 	unsigned char* data = stbi_load("../Resources/pop_cat.png", &width, &height, &nChannels, 0);
-
 	if (data) {
 		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
 		glGenerateMipmap(GL_TEXTURE_2D);
@@ -155,8 +159,23 @@ int main() {
 		cout << "텍스쳐 불러오기 실패" << endl;
 	}
 	stbi_image_free(data);
+	glGenTextures(1, &texture2);
+	glBindTexture(GL_TEXTURE_2D, texture2);
+
+	// 이미지 불러오기2
+	data = stbi_load("../Resources/kflag.png", &width, &height, &nChannels, 0);
+	if (data) {
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
+		glGenerateMipmap(GL_TEXTURE_2D);
+	}
+	else {
+		cout << "텍스쳐 불러오기 실패2" << endl;
+	}
+
+	stbi_image_free(data);
 	glUseProgram(shaderPrograms[0]);
-	//shader.setInt("texture1", 0);
+	glUniform1i(glGetUniformLocation(shaderPrograms[0], "texture1"), 0);
+	glUniform1i(glGetUniformLocation(shaderPrograms[0], "texture2"), 1);
 
 	// Main loop
 	while (!glfwWindowShouldClose(window)) {
@@ -169,6 +188,8 @@ int main() {
 
 		glActiveTexture(GL_TEXTURE0);
 		glBindTexture(GL_TEXTURE_2D, texture1);
+		glActiveTexture(GL_TEXTURE1);
+		glBindTexture(GL_TEXTURE_2D, texture2);
 		// 4. draw shapes
 		glBindVertexArray(VAO);
 		// 삼각형1
