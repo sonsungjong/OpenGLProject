@@ -63,6 +63,15 @@
     <ClCompile Include="textureTest.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="_07_Going3D.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Camera.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="_08_Camera.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="default.vert">
@@ -83,6 +92,12 @@
     <None Include="default3.vert">
       <Filter>리소스 파일\Shaders</Filter>
     </None>
+    <None Include="default4.vert">
+      <Filter>리소스 파일\Shaders</Filter>
+    </None>
+    <None Include="default4.frag">
+      <Filter>리소스 파일\Shaders</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="shaderClass.h">
@@ -97,9 +112,15 @@
     <ClInclude Include="VAO.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="Camera.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\Resources\pop_cat.png">
+      <Filter>리소스 파일\Textures</Filter>
+    </Image>
+    <Image Include="..\Resources\brick.png">
       <Filter>리소스 파일\Textures</Filter>
     </Image>
   </ItemGroup>

@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Camera.cpp" />
     <ClCompile Include="EBO.cpp" />
     <ClCompile Include="glad.c" />
     <ClCompile Include="shaderClass.cpp" />
@@ -33,6 +34,8 @@
     <ClCompile Include="_04_Organizing.cpp" />
     <ClCompile Include="_05_ShaderTriangle.cpp" />
     <ClCompile Include="_06_Texture.cpp" />
+    <ClCompile Include="_07_Going3D.cpp" />
+    <ClCompile Include="_08_Camera.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="default.frag" />
@@ -41,14 +44,18 @@
     <None Include="default2.vert" />
     <None Include="default3.frag" />
     <None Include="default3.vert" />
+    <None Include="default4.frag" />
+    <None Include="default4.vert" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Camera.h" />
     <ClInclude Include="EBO.h" />
     <ClInclude Include="shaderClass.h" />
     <ClInclude Include="VAO.h" />
     <ClInclude Include="VBO.h" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="..\Resources\brick.png" />
     <Image Include="..\Resources\pop_cat.png" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
