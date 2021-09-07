@@ -18,6 +18,22 @@ void Camera::Matrix(float FOVdeg, float nearPlane, float farPlane, shaderClass& 
 	glUniformMatrix4fv(glGetUniformLocation(shader.GetID(), uniform), 1, GL_FALSE, glm::value_ptr(projection*view));
 }
 
+void Camera::updateMatrix(float FOVdeg, float nearPlane, float farPlane)
+{
+	glm::mat4 view = glm::mat4(1.0f);
+	glm::mat4 projection = glm::mat4(1.0f);
+
+	view = glm::lookAt(Position, Position + Orientation, Up);
+	projection = glm::perspective(glm::radians(FOVdeg), (float)(width / height), nearPlane, farPlane);
+
+	cameraMatrix = projection * view;
+}
+
+void Camera::Matrix(shaderClass& shader, const char* uniform)
+{
+	glUniformMatrix4fv(glGetUniformLocation(shader.GetID(), uniform), 1, GL_FALSE, glm::value_ptr(cameraMatrix));
+}
+
 void Camera::Inputs(GLFWwindow* window)
 {
 	if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
@@ -86,6 +102,11 @@ void Camera::Inputs(GLFWwindow* window)
 		glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
 		firstClick = true;
 	}
+}
+
+glm::vec3 Camera::GetPosition()
+{
+	return this->Position;
 }
 
 glm::vec3 Camera::lookOriginCamera()

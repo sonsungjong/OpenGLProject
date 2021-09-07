@@ -72,6 +72,9 @@
     <ClCompile Include="_08_Camera.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="_09_Lighting.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="default.vert">
@@ -96,6 +99,18 @@
       <Filter>리소스 파일\Shaders</Filter>
     </None>
     <None Include="default4.frag">
+      <Filter>리소스 파일\Shaders</Filter>
+    </None>
+    <None Include="light.frag">
+      <Filter>리소스 파일\Shaders</Filter>
+    </None>
+    <None Include="light.vert">
+      <Filter>리소스 파일\Shaders</Filter>
+    </None>
+    <None Include="default5.vert">
+      <Filter>리소스 파일\Shaders</Filter>
+    </None>
+    <None Include="default5.frag">
       <Filter>리소스 파일\Shaders</Filter>
     </None>
   </ItemGroup>

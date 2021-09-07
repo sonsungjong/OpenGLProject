@@ -36,6 +36,7 @@
     <ClCompile Include="_06_Texture.cpp" />
     <ClCompile Include="_07_Going3D.cpp" />
     <ClCompile Include="_08_Camera.cpp" />
+    <ClCompile Include="_09_Lighting.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="default.frag" />
@@ -46,6 +47,10 @@
     <None Include="default3.vert" />
     <None Include="default4.frag" />
     <None Include="default4.vert" />
+    <None Include="default5.frag" />
+    <None Include="default5.vert" />
+    <None Include="light.frag" />
+    <None Include="light.vert" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h" />
