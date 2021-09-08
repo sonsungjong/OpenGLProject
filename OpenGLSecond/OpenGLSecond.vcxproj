@@ -146,6 +146,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\OpenGLThird\glad.c" />
+    <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="_09_Lighting.cpp" />
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="stb.cpp" />
     <ClCompile Include="_04_Shapes.cpp" />
@@ -155,6 +157,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="frag.glsl" />
+    <None Include="lighting.frag" />
+    <None Include="lighting.vert" />
+    <None Include="pyramid.frag" />
+    <None Include="pyramid.vert" />
     <None Include="vertex.glsl" />
     <None Include="_04_frag.glsl" />
     <None Include="_04_vertex.glsl" />
@@ -164,11 +170,13 @@
     <None Include="_06_TextureSecond.vert" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Camera.h" />
     <ClInclude Include="Shader.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\Resources\kflag.png" />
     <Image Include="..\Resources\pop_cat.png" />
+    <Image Include="brick.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

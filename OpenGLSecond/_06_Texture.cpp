@@ -2,7 +2,7 @@
 
 using namespace std;
 
-int main() {
+int main2626() {
 	GLfloat vertices[] = {
 		-0.5f, -0.5f, 0.0f,		1.0f, 0.0f, 0.0f,		0.0f, 0.0f,
 		-0.5f, 0.5f, 0.0f,		0.0f, 1.0f, 0.0f,		0.0f, 1.0f,
@@ -101,4 +101,6 @@ int main() {
 
 	glfwDestroyWindow(window);
 	glfwTerminate();
+
+	return 0;
 }

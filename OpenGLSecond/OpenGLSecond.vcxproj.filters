@@ -42,6 +42,12 @@
     <ClCompile Include="stb.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="_09_Lighting.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Camera.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="vertex.glsl">
@@ -68,9 +74,24 @@
     <None Include="_06_TextureSecond.frag">
       <Filter>Resource Files\Shaders</Filter>
     </None>
+    <None Include="lighting.vert">
+      <Filter>Resource Files\Shaders</Filter>
+    </None>
+    <None Include="lighting.frag">
+      <Filter>Resource Files\Shaders</Filter>
+    </None>
+    <None Include="pyramid.vert">
+      <Filter>Resource Files\Shaders</Filter>
+    </None>
+    <None Include="pyramid.frag">
+      <Filter>Resource Files\Shaders</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Shader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -79,6 +100,9 @@
       <Filter>Resource Files\Textures</Filter>
     </Image>
     <Image Include="..\Resources\pop_cat.png">
+      <Filter>Resource Files\Textures</Filter>
+    </Image>
+    <Image Include="brick.png">
       <Filter>Resource Files\Textures</Filter>
     </Image>
   </ItemGroup>
