@@ -1,24 +1,14 @@
-#include <iostream>
-#include <glad/glad.h>
-#include <GLFW/glfw3.h>
-#include <stb/stb_image.h>
-#include <glm/glm.hpp>
-#include <glm/gtc/matrix_transform.hpp>
-#include <glm/gtc/type_ptr.hpp>
-
-#include "shaderClass.h"
-#include "VAO.h"
-#include "VBO.h"
-#include "EBO.h"
 #include "Camera.h"
 
 using namespace std;
 
-int main() {
+int main09()
+{
 	unsigned int width = 800;
 	unsigned int height = 800;
 
-	GLfloat vertices[] = {
+	GLfloat vertices[] =
+	{
 		-0.5f, 0.0f,  0.5f,     0.83f, 0.70f, 0.44f, 	 0.0f, 0.0f,      0.0f, -1.0f, 0.0f, // Bottom side
 		-0.5f, 0.0f, -0.5f,     0.83f, 0.70f, 0.44f,	 0.0f, 5.0f,      0.0f, -1.0f, 0.0f,
 		0.5f, 0.0f, -0.5f,     0.83f, 0.70f, 0.44f,		5.0f, 5.0f,      0.0f, -1.0f, 0.0f,
@@ -41,7 +31,8 @@ int main() {
 		 0.0f, 0.8f,  0.0f,     0.92f, 0.86f, 0.76f,		2.5f, 5.0f,      0.0f, 0.5f,  0.8f
 	};
 
-	GLuint indices[] = {
+	GLuint indices[] =
+	{
 		0, 1, 2, // Bottom side
 		0, 2, 3, // Bottom side
 		4, 6, 5, // Left side
@@ -79,58 +70,65 @@ int main() {
 	};
 
 	glfwInit();
-
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
-	GLFWwindow* window = glfwCreateWindow(width, height, "SungJong09", NULL, NULL);
+	GLFWwindow* window = glfwCreateWindow(width, height, "Lighting1", NULL, NULL);
 	if (window == NULL) {
-		cout << "GLFW window 생성 실패" << endl;
 		glfwTerminate();
 		return -1;
 	}
 
-	// 현재 context 안에 window 객체 도입
 	glfwMakeContextCurrent(window);
 	gladLoadGL();
 	glViewport(0, 0, width, height);
 
-	// Shader 객체를 생성
-	shaderClass shaderProgram("default5.vert", "default5.frag");
+	Shader pyramidShader("pyramid.vert", "pyramid.frag");
+	GLuint VAO, VBO, EBO;
+	glGenVertexArrays(1, &VAO);
+	glGenBuffers(1, &VBO);
+	glGenBuffers(1, &EBO);
 
-	VAO VAO1;
-	VAO1.Bind();
+	glBindVertexArray(VAO);
+	glBindBuffer(GL_ARRAY_BUFFER, VBO);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
 
-	VBO VBO1(vertices, sizeof(vertices));
-	EBO EBO1(indices, sizeof(indices));
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 11 * sizeof(float), (void*)0);
+	glEnableVertexAttribArray(0);
+	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 11 * sizeof(float), (void*)(3*sizeof(float)));
+	glEnableVertexAttribArray(1);
+	glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 11 * sizeof(float), (void*)(6 * sizeof(float)));
+	glEnableVertexAttribArray(2);
+	glVertexAttribPointer(3, 3, GL_FLOAT, GL_FALSE, 11 * sizeof(float), (void*)(8 * sizeof(float)));
+	glEnableVertexAttribArray(3);
 
-	VAO1.LinkAttrib(VBO1, 0, 3, GL_FLOAT, 11 * sizeof(float), (void*)0);
-	VAO1.LinkAttrib(VBO1, 1, 3, GL_FLOAT, 11 * sizeof(float), (void*)(3 * sizeof(float)));
-	VAO1.LinkAttrib(VBO1, 2, 2, GL_FLOAT, 11 * sizeof(float), (void*)(6 * sizeof(float)));
-	VAO1.LinkAttrib(VBO1, 3, 3, GL_FLOAT, 11 * sizeof(float), (void*)(8 * sizeof(float)));
+	glBindVertexArray(0);
+	glBindBuffer(GL_ARRAY_BUFFER, 0);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 
-	VAO1.UnBind();
-	VBO1.UnBind();
-	EBO1.UnBind();
+	Shader lightShader("lighting.vert", "lighting.frag");
+	GLuint lightVAO, lightVBO, lightEBO;
+	glGenVertexArrays(1, &lightVAO);
+	glGenBuffers(1, &lightVBO);
+	glGenBuffers(1, &lightEBO);
 
-	// light 큐브를 위한 Shader
-	shaderClass lightShader("light.vert", "light.frag");
+	glBindVertexArray(lightVAO);
+	glBindBuffer(GL_ARRAY_BUFFER, lightVBO);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(lightVertices), lightVertices, GL_STATIC_DRAW);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, lightEBO);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(lightIndices), lightIndices, GL_STATIC_DRAW);
 
-	VAO lightVAO;
-	lightVAO.Bind();
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
+	glEnableVertexAttribArray(0);
 
-	VBO lightVBO(lightVertices, sizeof(lightVertices));
-	EBO lightEBO(lightIndices, sizeof(lightIndices));
-
-	lightVAO.LinkAttrib(lightVBO, 0, 3, GL_FLOAT, 3 * sizeof(float), (void*)0);
-
-	lightVAO.UnBind();
-	lightVBO.UnBind();
-	lightEBO.UnBind();
+	glBindVertexArray(0);
+	glBindBuffer(GL_ARRAY_BUFFER, 0);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 
 	glm::vec4 lightColor = glm::vec4(1.0f, 1.0f, 1.0f, 1.0f);
-
 	glm::vec3 lightPos = glm::vec3(0.5f, 0.5f, 0.5f);
 	glm::mat4 lightModel = glm::mat4(1.0f);
 	lightModel = glm::translate(lightModel, lightPos);
@@ -142,38 +140,32 @@ int main() {
 	lightShader.Activate();
 	glUniformMatrix4fv(glGetUniformLocation(lightShader.GetID(), "model"), 1, GL_FALSE, glm::value_ptr(lightModel));
 	glUniform4f(glGetUniformLocation(lightShader.GetID(), "lightColor"), lightColor.x, lightColor.y, lightColor.z, lightColor.w);
-	shaderProgram.Activate();
-	glUniformMatrix4fv(glGetUniformLocation(shaderProgram.GetID(), "model"), 1, GL_FALSE, glm::value_ptr(pyramidModel));
-	glUniform4f(glGetUniformLocation(shaderProgram.GetID(), "lightColor"), lightColor.x, lightColor.y, lightColor.z, lightColor.w);
-	glUniform3f(glGetUniformLocation(shaderProgram.GetID(), "lightPos"), lightColor.x, lightColor.y, lightColor.z);
+	pyramidShader.Activate();
+	glUniformMatrix4fv(glGetUniformLocation(pyramidShader.GetID(), "model"), 1, GL_FALSE, glm::value_ptr(pyramidModel));
+	glUniform4f(glGetUniformLocation(pyramidShader.GetID(), "lightColor"), lightColor.x, lightColor.y, lightColor.z, lightColor.w);
+	glUniform3f(glGetUniformLocation(pyramidShader.GetID(), "lightPos"), lightColor.x, lightColor.y, lightColor.z);
 
-	// 텍스쳐
-	int widthImg, heightImg, numColCh;
-	stbi_set_flip_vertically_on_load(true);
-	unsigned char* bytes = stbi_load("../Resources/brick.png", &widthImg, &heightImg, &numColCh, 0);
-
+	// texture
 	GLuint texture;
+	int imgWidth, imgHeight, numColCh;
+	stbi_set_flip_vertically_on_load(true);
+	unsigned char* bytes = stbi_load("brick.png", &imgWidth, &imgHeight, &numColCh, 0);
+
 	glGenTextures(1, &texture);
 	glActiveTexture(GL_TEXTURE0);
 	glBindTexture(GL_TEXTURE_2D, texture);
-
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-
-	// float flatColor[] = {1.0f, 1.0f, 1.0f, 1.0f};
-	// glTexParameterfv(GL_TEXTURE_2D, GL_TEXTURE_BORDER_COLOR, flatColor);
-
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, widthImg, heightImg, 0, GL_RGBA, GL_UNSIGNED_BYTE, bytes);
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, imgWidth, imgHeight, 0, GL_RGBA, GL_UNSIGNED_BYTE, bytes);
 	glGenerateMipmap(GL_TEXTURE_2D);
 
 	stbi_image_free(bytes);
 	glBindTexture(GL_TEXTURE_2D, 0);
 
-	GLuint tex0Uni = glGetUniformLocation(shaderProgram.GetID(), "tex0");
-	shaderProgram.Activate();
+	GLuint tex0Uni = glGetUniformLocation(pyramidShader.GetID(), "tex0");
+	pyramidShader.Activate();
 	glUniform1i(tex0Uni, 0);
 
 	// Depth Buffer 사용
@@ -187,36 +179,35 @@ int main() {
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 		camera.Inputs(window);
-		camera.updateMatrix(45.0f, 0.1f, 100.0f);
+		camera.UpdateMatrix(45.0f, 0.1f, 100.0f);
 
-		shaderProgram.Activate();
+		pyramidShader.Activate();
 		// 스펙큘러 라이팅을 위해 카메라 위치를 Fragment Shader로 보냄
-		glUniform3f(glGetUniformLocation(shaderProgram.GetID(), "camPos"), camera.GetPosition().x, camera.GetPosition().y, camera.GetPosition().z);
+		glUniform3f(glGetUniformLocation(pyramidShader.GetID(), "camPos"), camera.GetPosition().x, camera.GetPosition().y, camera.GetPosition().z);
 		// camMatrix를 light의 Vertex Shader로 보냄
-		camera.Matrix(shaderProgram, "camMatrix");
+		camera.Matrix(pyramidShader, "camMatrix");
 		glBindTexture(GL_TEXTURE_2D, texture);
-		VAO1.Bind();
+		glBindVertexArray(VAO);
 		// 그린다 primitives, indices의 수, indices의 데이터타입, indices의 위치
 		glDrawElements(GL_TRIANGLES, sizeof(indices) / sizeof(int), GL_UNSIGNED_INT, 0);
-		
+
 		lightShader.Activate();
 		camera.Matrix(lightShader, "camMatrix");
-		lightVAO.Bind();
-		glDrawElements(GL_TRIANGLES, sizeof(lightIndices)/sizeof(int), GL_UNSIGNED_INT, 0);
-		
+		glBindVertexArray(lightVAO);
+		glDrawElements(GL_TRIANGLES, sizeof(lightIndices) / sizeof(int), GL_UNSIGNED_INT, 0);
+
 		glfwSwapBuffers(window);
 		glfwPollEvents();
 	}
-
-	VAO1.Delete();
-	VBO1.Delete();
-	EBO1.Delete();
+	glDeleteVertexArrays(1, &VAO);
+	glDeleteBuffers(1, &VBO);
+	glDeleteBuffers(1, &EBO);
 	glDeleteTextures(1, &texture);
-	shaderProgram.Delete();
+	pyramidShader.Delete();
 
-	lightVAO.Delete();
-	lightVBO.Delete();
-	lightEBO.Delete();
+	glDeleteVertexArrays(1, &lightVAO);
+	glDeleteBuffers(1, &lightVBO);
+	glDeleteBuffers(1, &lightEBO);
 	lightShader.Delete();
 
 	// 프로그램 종료 전 window와 GLFW 해제
@@ -225,3 +216,13 @@ int main() {
 
 	return 0;
 }
+
+/*
+	Shader : GPU에서 동작하는 프로그램. 입력값과 출력값으로 사용, 실질적으로 이미지를 그림
+	VAO : 작업량을 줄이기 위해 VBO들을 연결하여 최종 렌더링된 물체를 저장
+	VBO : 그리고자하는 데이터를 넣어두는 GPU의 메모리 버퍼(공간)
+	EBO : 인덱스를 이용해서 정점의 순서를 지정하여 저장하는 버퍼(공간)
+	Texture : 외부 이미지 파일을 읽어와 출력
+	normal : 주어진 표면의 법선(교차점이 하나인 접선의 수직선)과 광원 또는 카메라 방향 사이의 각도
+	w : 동치좌표, x,y,z를 각각 나누기, 1이면 공간상에서의 위치, 0이면 방향, 음수는 금지// 방향과 점을 구분하며 mat4와 계산하기 위해 필요 4x4행렬과 계산하기 위해서는 vec4여야함
+*/

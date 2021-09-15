@@ -42,10 +42,13 @@
     <ClCompile Include="stb.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="_09_Lighting.cpp">
+    <ClCompile Include="_09_LightingPyramid.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Camera.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="_10_LightingSpecular.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -84,6 +87,12 @@
       <Filter>Resource Files\Shaders</Filter>
     </None>
     <None Include="pyramid.frag">
+      <Filter>Resource Files\Shaders</Filter>
+    </None>
+    <None Include="specular.vert">
+      <Filter>Resource Files\Shaders</Filter>
+    </None>
+    <None Include="specular.frag">
       <Filter>Resource Files\Shaders</Filter>
     </None>
   </ItemGroup>
