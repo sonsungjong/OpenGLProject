@@ -14,7 +14,7 @@
 
 using namespace std;
 
-int main() {
+int main09() {
 	unsigned int width = 800;
 	unsigned int height = 800;
 

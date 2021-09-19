@@ -1,20 +1,16 @@
-#ifndef VBO_CLASS_H
-#define VBO_CLASS_H
-
+#pragma once
 #include <glad/glad.h>
-
-
-class VBO
+#include <vector>
+class MeshEBO
 {
 protected:
 	GLuint ID;
 public:
 	// »ý¼ºÀÚ
-	VBO(GLfloat* vertices, GLsizeiptr size);
+	MeshEBO(std::vector<GLuint>& indices);
 
 	void Bind();
 	void UnBind();
 	void Delete();
 };
 
-#endif

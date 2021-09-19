@@ -22,8 +22,13 @@
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="EBO.cpp" />
     <ClCompile Include="glad.c" />
+    <ClCompile Include="Mesh.cpp" />
+    <ClCompile Include="MeshEBO.cpp" />
+    <ClCompile Include="MeshVAO.cpp" />
+    <ClCompile Include="MeshVBO.cpp" />
     <ClCompile Include="shaderClass.cpp" />
     <ClCompile Include="stb.cpp" />
+    <ClCompile Include="Texture.cpp" />
     <ClCompile Include="textureTest.cpp" />
     <ClCompile Include="VAO.cpp" />
     <ClCompile Include="VBO.cpp" />
@@ -37,6 +42,7 @@
     <ClCompile Include="_07_Going3D.cpp" />
     <ClCompile Include="_08_Camera.cpp" />
     <ClCompile Include="_09_Lighting.cpp" />
+    <ClCompile Include="_12_MeshClass.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="default.frag" />
@@ -51,11 +57,18 @@
     <None Include="default5.vert" />
     <None Include="light.frag" />
     <None Include="light.vert" />
+    <None Include="mesh.frag" />
+    <None Include="mesh.vert" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h" />
     <ClInclude Include="EBO.h" />
+    <ClInclude Include="Mesh.h" />
+    <ClInclude Include="MeshEBO.h" />
+    <ClInclude Include="MeshVAO.h" />
+    <ClInclude Include="MeshVBO.h" />
     <ClInclude Include="shaderClass.h" />
+    <ClInclude Include="Texture.h" />
     <ClInclude Include="VAO.h" />
     <ClInclude Include="VBO.h" />
   </ItemGroup>

@@ -11,8 +11,11 @@ public:
 	// »ý¼ºÀÚ
 	EBO(GLuint* indices, GLsizeiptr size);
 
+	// Binds the EBO
 	void Bind();
+	// Unbinds the EBO
 	void UnBind();
+	// Deletes the EBO
 	void Delete();
 };
 
